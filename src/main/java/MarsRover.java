@@ -2,72 +2,34 @@
  * Created by Lies on 4-4-2017.
  */
 public class MarsRover {
-    private int x;
-    private int y;
     private Planet planet;
     private String direction;
+    private Position position;
 
     public MarsRover(int x, int y, Planet planet, String direction) {
-        this.x = x;
-        this.y = y;
+        position = new Position(x, y);
         this.direction = direction;
         this.planet = planet;
     }
 
     public void forward() {
-        if (direction.equals("north")) {
-            y = y + 1;
-            if (y > planet.giveMaxY()) {
-                y = planet.giveMinY();
-            }
+        Position nextPosition = position.nextPositionForward(this.direction, this.planet);
+        if (planet.locationHasObstacle(nextPosition.getX(), nextPosition.getY())) {
+            return;
+        }
+            this.position = nextPosition;
         }
 
-        if (direction.equals("south")) {
-            y = y - 1;
-            if (y < planet.giveMinY()) {
-                y = planet.giveMaxY();
-            }
-        }
-        if (direction.equals("east")) {
-            x = x + 1;
-            if (x > planet.giveMaxX()) {
-                x = planet.giveMinX();
-            }
-        }
-        if (direction.equals("west")) {
-            x = x - 1;
-            if (x < planet.giveMinX()) {
-                x = planet.giveMaxX();
-            }
-        }
 
-    }
 
     public void backward() {
-        if (direction.equals("north")) {
-            y = y - 1;
-            if (y < planet.giveMinY()) {
-                y = planet.giveMaxY();
-            }
+        Position nextPosition = this.position.nextPositionBackward(this.direction, this.planet);
+
+        if (this.planet.locationHasObstacle(nextPosition.getX(), nextPosition.getY())) {
+            return;
         }
-        if (direction.equals("south")) {
-            y = y + 1;
-            if (y > planet.giveMaxY()) {
-                y = planet.giveMinY();
-            }
-        }
-        if (direction.equals("west")) {
-            x = x + 1;
-            if (x > planet.giveMaxX()) {
-                x = planet.giveMinX();
-            }
-        }
-        if (direction.equals("east")) {
-            x = x - 1;
-            if (x < planet.giveMinX()) {
-                x = planet.giveMaxX();
-            }
-        }
+        this.position = nextPosition;
+
     }
 
     public void left() {
@@ -108,31 +70,17 @@ public class MarsRover {
         }
     }
 
-private void stayPutWhenFacesObstacle(){
-        if(planet.locationHasObstacle(x, y)){
-
-    }
-}
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 
     public String getDirection() {
         return direction;
     }
 
-
-    public void setX(int x) {
-        this.x = x;
+    public int giveY() {
+        return position.getY();
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public int giveX() {
+        return position.getX();
     }
 
     public void setDirection(String direction) {

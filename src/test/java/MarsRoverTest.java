@@ -16,55 +16,55 @@ public class MarsRoverTest {
     public void testForwardWhenDirectionIsNorth() {
         MarsRover marsrover = new MarsRover(0, 0,planet, "north");
         marsrover.forward();
-        Assert.assertEquals(1,marsrover.getY());
+        Assert.assertEquals(1,marsrover.giveY());
     }
 
     @Test
     public void testForwardWhenDirectionIsSouth() {
         MarsRover marsrover = new MarsRover(0, 1,planet,  "south");
         marsrover.forward();
-        Assert.assertEquals(0, marsrover.getY());
+        Assert.assertEquals(0, marsrover.giveY());
     }
 
     @Test
     public void testBackwardWhenDirectionIsNorth() {
         MarsRover marsrover = new MarsRover(0, 1,planet,  "north");
         marsrover.backward();
-        Assert.assertEquals(0, marsrover.getY());
+        Assert.assertEquals(0, marsrover.giveY());
     }
 
     @Test
     public void testBackwardWhenDirectionIsSouth() {
         MarsRover marsrover = new MarsRover(0, 0,planet, "south");
         marsrover.backward();
-        Assert.assertEquals(1, marsrover.getY());
+        Assert.assertEquals(1, marsrover.giveY());
     }
 
     @Test
     public void testForwardWhenDirectionIsWest() {
         MarsRover marsrover = new MarsRover(1, 0,planet,"west");
         marsrover.forward();
-        Assert.assertEquals(0, marsrover.getX());
+        Assert.assertEquals(0, marsrover.giveX());
     }
 
     @Test
     public void testBackwardWhenDirectionIsWest() {
         MarsRover marsrover = new MarsRover(0, 0,planet,  "west");
         marsrover.backward();
-        Assert.assertEquals(1, marsrover.getX());
+        Assert.assertEquals(1, marsrover.giveX());
     }
     @Test
     public void testForwardWhenDirectionIsEast() {
         MarsRover marsrover = new MarsRover(0, 0, planet,"east");
         marsrover.forward();
-        Assert.assertEquals(1,marsrover.getX());
+        Assert.assertEquals(1,marsrover.giveX());
     }
 
     @Test
     public void testBackwardWhenDirectionIsEast() {
         MarsRover marsrover = new MarsRover(1, 0,planet, "east");
         marsrover.backward();
-        Assert.assertEquals(0,marsrover.getX());
+        Assert.assertEquals(0,marsrover.giveX());
     }
     @Test
     public void testLeftWhenDirectionIsNorth(){
@@ -117,65 +117,57 @@ public class MarsRoverTest {
     }
     @Test
     public void testForwardWhenDirectionIsNorthOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0,planet, "north");
-        marsrover.setY(planet.giveMaxX());
+        MarsRover marsrover = new MarsRover(0, planet.giveMaxY(),planet, "north");
         marsrover.forward();
-        Assert.assertEquals(planet.giveMinY(), marsrover.getY());
+        Assert.assertEquals(planet.giveMinY(), marsrover.giveY());
     }
     @Test
     public void testForwardWhenDirectionIsSouthOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0,planet,  "south");
-        marsrover.setY(planet.giveMinY());
+        MarsRover marsrover = new MarsRover(0, planet.giveMinY(),planet,  "south");
         marsrover.forward();
-        Assert.assertEquals(planet.giveMaxY(), marsrover.getY());
+        Assert.assertEquals(planet.giveMaxY(), marsrover.giveY());
     }
     @Test
     public void testForwardWhenDirectionIsEastOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0,planet,"east");
-        marsrover.setX(planet.giveMaxX());
+        MarsRover marsrover = new MarsRover(planet.giveMaxX(), 0,planet,"east");
         marsrover.forward();
-        Assert.assertEquals(planet.giveMinX(), marsrover.getX());
+        Assert.assertEquals(planet.giveMinX(), marsrover.giveX());
     }
     @Test
     public void testForwardWhenDirectionIsWestOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0,planet, "west");
-        marsrover.setX(planet.giveMinX());
+        MarsRover marsrover = new MarsRover(planet.giveMinX(), 0,planet, "west");
         marsrover.forward();
-        Assert.assertEquals(planet.giveMaxY(), marsrover.getX());
+        Assert.assertEquals(planet.giveMaxY(), marsrover.giveX());
     }
     @Test
     public void testBackwardWhenDirectionIsNorthOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0,planet,"north");
-        marsrover.setY(planet.giveMinY());
+        MarsRover marsrover = new MarsRover(0, planet.giveMinY(),planet,"north");
         marsrover.backward();
-        Assert.assertEquals(planet.giveMaxY(), marsrover.getY());
+        Assert.assertEquals(planet.giveMaxY(), marsrover.giveY());
     }
     @Test
     public void testBackwardWhenDirectionIsSouthOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0, planet,"south");
-        marsrover.setY(planet.giveMaxY());
+        MarsRover marsrover = new MarsRover(0, planet.giveMaxY(), planet,"south");
         marsrover.backward();
-        Assert.assertEquals(planet.giveMinY(), marsrover.getY());
+        Assert.assertEquals(planet.giveMinY(), marsrover.giveY());
     }
     @Test
     public void testBackwardWhenDirectionIsEastOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0,planet,"east");
-        marsrover.setX(planet.giveMinX());
+        MarsRover marsrover = new MarsRover(planet.giveMinX(), 0,planet,"east");
         marsrover.backward();
-        Assert.assertEquals(planet.giveMaxX(), marsrover.getX());
+        Assert.assertEquals(planet.giveMaxX(), marsrover.giveX());
     }
     @Test
     public void testBackwardWhenDirectionIsWestOverEdge() {
-        MarsRover marsrover = new MarsRover(0, 0,planet,"west");
-        marsrover.setX(planet.giveMaxX());
+        MarsRover marsrover = new MarsRover(planet.giveMaxX(), 0,planet,"west");
         marsrover.backward();
-        Assert.assertEquals(planet.giveMinX(), marsrover.getX());
+        Assert.assertEquals(planet.giveMinX(), marsrover.giveX());
     }
     @Test
     public void testRemainsAtLocationWhenFacesObstacle(){
         MarsRover marsRover = new MarsRover(0,0,planet,"east");
         planet.putObstacle(1,0);
         marsRover.forward();
-        Assert.assertEquals(0, marsRover.getX());
+        Assert.assertEquals(0, marsRover.giveX());
     }
 }
