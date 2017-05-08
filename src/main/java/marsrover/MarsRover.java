@@ -1,6 +1,5 @@
-/**
- * Created by Lies on 4-4-2017.
- */
+package marsrover;
+
 public class MarsRover {
     private Planet planet;
     private String direction;
@@ -17,19 +16,15 @@ public class MarsRover {
         if (planet.locationHasObstacle(nextPosition.getX(), nextPosition.getY())) {
             return;
         }
-            this.position = nextPosition;
-        }
-
-
+        this.position = nextPosition;
+    }
 
     public void backward() {
         Position nextPosition = this.position.nextPositionBackward(this.direction, this.planet);
-
         if (this.planet.locationHasObstacle(nextPosition.getX(), nextPosition.getY())) {
             return;
         }
         this.position = nextPosition;
-
     }
 
     public void left() {
@@ -70,7 +65,6 @@ public class MarsRover {
         }
     }
 
-
     public String getDirection() {
         return direction;
     }
@@ -81,9 +75,5 @@ public class MarsRover {
 
     public int giveX() {
         return position.getX();
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
     }
 }

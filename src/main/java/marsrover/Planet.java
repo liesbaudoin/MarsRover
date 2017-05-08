@@ -1,6 +1,5 @@
-/**
- * Created by Lies on 5-4-2017.
- */
+package marsrover;
+
 public class Planet {
     private boolean[][] planet;
 
@@ -9,22 +8,26 @@ public class Planet {
     }
 
     public int giveMaxX() {
-        return planet.length -1;
+        return planet.length - 1;
     }
-    public int giveMinX(){
+
+    public int giveMinX() {
         return 0;
     }
 
     public int giveMaxY() {
-        return planet[0].length-1;
+        return planet[0].length - 1;
     }
-    public int giveMinY(){
+
+    public int giveMinY() {
         return 0;
     }
-    public void putObstacle(int x, int y){
-        planet[x][y]=true;
+
+    public void putObstacle(int x, int y) {
+        planet[x][y] = true;
     }
-    public boolean locationHasObstacle(int x, int y){
+
+    public boolean locationHasObstacle(int x, int y) {
         return planet[x][y] == true;
     }
 }
